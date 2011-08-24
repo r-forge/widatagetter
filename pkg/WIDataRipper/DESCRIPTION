@@ -1,0 +1,11 @@
+Package: WIDataRipper
+Type: Package
+Title: WaterInfo Data Ripper
+Version: 1.0.1
+Date: 2011-08-24
+Author: Jason Lessels
+Maintainer: Jason Lessels <jlessels@gmail.com>
+Depends: RCurl
+Description: This package provides the ability to obtain from the NSW governments water information website from within R
+License: GPL >=3
+LazyLoad: yes
