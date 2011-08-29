@@ -1,5 +1,5 @@
 getData <-
-function(site_number,start_time,end_time,variable_number=100,interval='hour',multiplier=1,data_type='mean'){
+function(site_number,start_time,end_time,variable_number=100,interval='hour',multiplier=1,data_type='mean',data_source="A"){
 
 ### Here is the SOAP code that is sent to the server for the request of data.
 dataRequestCode <- '<?xml version="1.0" encoding="UTF-8"?>
@@ -21,7 +21,7 @@ xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
 "interval": "INTERVAL",
 "multiplier": "MULTI",
 "varto": "VARIABLENUMBER",
-"datasource": "A",
+"datasource": "DATASOURCE",
 "end_time": "ENDTIME",
 "data_type": "DATATYPE",
 "multiplier": "1"},
@@ -44,6 +44,7 @@ dataRequestCode <- gsub('INTERVAL',interval,dataRequestCode) # the units of time
 dataRequestCode <- gsub('MULTI',multiplier,dataRequestCode) # the amount of units per interval.
 dataRequestCode <- gsub('ENDTIME',end_time,dataRequestCode) # the ending time of the record
 dataRequestCode <- gsub('DATATYPE',data_type,dataRequestCode) # aggregating function.
+dataRequestCode <- gsub('DATASOURCE',data_source,dataRequestCode) #The data source withiin the database.
 
 
 # create an object to save the returned results from the server
@@ -123,7 +124,7 @@ siteNumber<-substr(additionalData,xLongEnd+attributes(xLongEnd)$match.length,sit
 
 # fix the x variable. 
 names(data)[2]<-paste(gsub(' ','_',xLongName))
-allTogether<-list(data=data,siteNumeber=as.numeric(siteNumber),units=xUnit,siteShortName=shortName,siteName=siteName,qualityCodes=qualityCodes,siteName=siteName)
+allTogether<-list(data=data,siteNumeber=as.numeric(siteNumber),units=xUnit,siteShortName=shortName,siteName=siteName,qualityCodes=qualityCodes)
 cat('Make sure you check the quality codes. 255 = missing data, but data is represented by 0\'s.\n')
 return(allTogether)
 }

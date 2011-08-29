@@ -1,5 +1,5 @@
 getSiteVariables <-
-function(site_number){
+function(site_number,data_source="A"){
 
 dataRequestCode <- '<?xml version="1.0" encoding="UTF-8"?>
 <soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -15,7 +15,7 @@ xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
 <c-gensym5 xsi:type="xsd:string">
 {"params":
 {"site_list": "SITENUMBER",
-"datasource": "A",
+"datasource": "DATASOURCE",
 },
 "function": "get_variable_list",
 "version": 1}
@@ -30,6 +30,7 @@ xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
 '
 # set the site number to that from the user.
 dataRequestCode <- gsub('SITENUMBER',site_number,dataRequestCode) # Number of requested site.
+dataRequestCode <- gsub('DATASOURCE',data_source,dataRequestCode) # Number of requested site.
 # create an object to save the results.
 h<-basicTextGatherer()
 # Request the data.

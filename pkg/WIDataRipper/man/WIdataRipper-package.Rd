@@ -3,11 +3,10 @@
 \alias{WIdataRipper}
 \docType{package}
 \title{
-This is temp
+WaterInfo data ripper.
 }
 \description{
-More about what it does (maybe more than one line)
-~~ A concise (1-5 lines) description of the package ~~
+This package is intended to perform basic data and information retrieval functions for the NSW government stream and rivers network database. The functions are limited for ease of use. Please see the source code for further information about the available methods for data retrieval.
 }
 \details{
 \tabular{ll}{
@@ -22,20 +21,13 @@ LazyLoad: \tab yes\cr
 ~~ functions ~~
 }
 \author{
-Who wrote it
+Jason Lessels
 
-Maintainer: Who to complain to <yourfault@somewhere.net>
-~~ The author and/or maintainer of the package ~~
-}
-\references{
-~~ Literature or other references for background information ~~
+Maintainer: Jason Lessels <jlessels@gmail.com>
+
 }
 
 \keyword{ package }
-\seealso{
-~~ Optional links to other man pages, e.g. ~~
-~~ \code{\link[<pkg>:<pkg>-package]{<pkg>}} ~~
-}
 \examples{
-~~ simple examples of the most important functions ~~
+getSiteVariables(410044)
 }

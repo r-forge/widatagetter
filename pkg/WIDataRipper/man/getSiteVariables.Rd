@@ -1,37 +1,41 @@
 \name{getSiteVariables}
 \alias{getSiteVariables}
-%- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-TEMP TITLE
+Get site variable information.
 }
 \description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
+This function retrieves information about the variables stored on the database. Within the database there are potentially several data sources. TODO add info about using getSiteDataSources.
 }
 \usage{
-getSiteVariables(site_number)
+getSiteVariables(site_number, data_source = "A")
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{site_number}{
-%%     ~~Describe \code{site_number} here~~
+The number of the desired site.
+}
+\item{data_source}{
+The source of the data within the database. See details.
 }
 }
 \details{
-%%  ~~ If necessary, more details than the description above ~~
+There appears to be two main data sources available. The data source "A" appears to have been verified and all data points appear to have quality ratings. The data source "PROV" appears to be the latest data, or data that has not been verified with quality values. With this reasoning the data source "A" is set as default. 
 }
 \value{
-
+\item{siteName}{The long name of the site.}
+\item{siteShortName}{ The short name of the site.}
+\item{siteNumber}{ The site number.}
+\item{variables} {A data.base with the starting and end dates. 
+\\ Variable number and variable type is also included.}
 }
 
 \author{
-Jason Lessels
+Jason Lessels <jlessels@gmail.com>
 }
-
-
-
 
 \seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
+TODO add link to the get data source function.
 }
 \examples{
+getSiteVariables(site_number=410044)
+getSiteVariables(site_number=410044,data_source="PROV")
 }
