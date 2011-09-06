@@ -23,8 +23,7 @@ xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
 "varto": "VARIABLENUMBER",
 "datasource": "DATASOURCE",
 "end_time": "ENDTIME",
-"data_type": "DATATYPE",
-"multiplier": "1"},
+"data_type": "DATATYPE",},
 "function": "get_ts_traces",
 "version": 1}
 }
