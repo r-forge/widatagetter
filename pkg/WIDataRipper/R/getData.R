@@ -92,6 +92,8 @@ qualityCodes<-gsub('\"','\n',qualityCodes)
 cat(qualityCodes,file='temp.data')
 qualityCodes<-read.csv('temp.data',header=F)
 unlink('temp.data')
+#Remove NA quality codes
+qualityCodes <- qualityCodes[!is.na(qualityCodes)]
 
 shortStart<-regexpr('short_name\\\":\\"',more)
 shortEnd<-regexpr('\\\",\\\"name\\\":\\\"',more)
