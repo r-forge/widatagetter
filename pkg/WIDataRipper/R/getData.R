@@ -1,5 +1,5 @@
 getData <-
-function(site_number,start_time,end_time,variable_number=100,interval='hour',multiplier=1,data_type='mean',data_source="A"){
+function(site_number,start_time,end_time,variable_number=100,interval='hour',multiplier=1,data_type='mean',data_source="A",convert_to=NULL){
 
 ### Here is the SOAP code that is sent to the server for the request of data.
 dataRequestCode <- '<?xml version="1.0" encoding="UTF-8"?>
@@ -20,7 +20,7 @@ xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
 "varfrom": "VARIABLENUMBER",
 "interval": "INTERVAL",
 "multiplier": "MULTI",
-"varto": "VARIABLENUMBER",
+"varto": "CONVERTTO",
 "datasource": "DATASOURCE",
 "end_time": "ENDTIME",
 "data_type": "DATATYPE",},
@@ -39,6 +39,11 @@ xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
 dataRequestCode <- gsub('SITENUMBER',site_number,dataRequestCode) # Number of requested site.
 dataRequestCode <- gsub('STARTTIME',start_time,dataRequestCode) # the starting time of the record
 dataRequestCode <- gsub('VARIABLENUMBER',variable_number,dataRequestCode) # the database number of the desired variable
+if(!is.null(convert_to)){
+	dataRequestCode <- gsub('CONVERTTO',convert_to,dataRequestCode) # the database number of the desired variable
+else{
+	dataRequestCode<-gsub('CONVERTTO',variable_nummber,dataRequestCode)
+}
 dataRequestCode <- gsub('INTERVAL',interval,dataRequestCode) # the units of time interval
 dataRequestCode <- gsub('MULTI',multiplier,dataRequestCode) # the amount of units per interval.
 dataRequestCode <- gsub('ENDTIME',end_time,dataRequestCode) # the ending time of the record
@@ -59,6 +64,10 @@ curlPerform(url="http://203.3.195.115/cgi/webservice.server.pl",
            )
 # get the results and put them into an object as a character array.
 returnedString<-h$value()
+#for testing purposes
+#return(returnedString)
+#Check that the server responded with complete http headers
+if(length(grep("CGI Error",returnedString[1]))) stop("The server didn't respond properly. Probably an incorect variable_number.")
 cat('Server responded, now just cleaning up the response.\n')
 more<-strsplit(returnedString,'xsi:type=\"xsd:string\">')[[1]][2]
 ###Need to change error checking. if there is an error, there generally is an error message within traces. 
@@ -79,6 +88,7 @@ qualityCodes<-substr(more,qualityStart+attributes(qualityStart)$match.length,qua
 qualityCodes<-gsub('\\\":\\\"',',',qualityCodes)
 qualityCodes<-gsub('\\\",\\\"','\n',qualityCodes)
 qualityCodes<-gsub('\"','\n',qualityCodes)
+
 cat(qualityCodes,file='temp.data')
 qualityCodes<-read.csv('temp.data',header=F)
 unlink('temp.data')
@@ -102,10 +112,12 @@ temp<-read.csv('temp.data',header=F)
 unlink('temp.data')
 # format the time strings
 temp[,2]<-formatC(temp[,2],format='f',digits=0)
-data<-data.frame(date=strptime(temp[,2],'%Y%m%d%H%M%S'),x=temp[,1],qualityCode=temp[,3])
+data<-data.frame(date=strptime(temp[,2],'%Y%m%d%H%M%S',tz="GMT"),x=temp[,1],qualityCode=temp[,3])
 
 # Get more details about the dataset.
-xShortStart<-regexpr('varfrom_details\":\\{\"short_name\":\"',more)
+siteNumberStart<-regexpr('\\},\\\"site\\\":\\\"',more)
+xShortStart<-regexpr('\\\",\\\"varto_details\":\\{\"short_name\":\"',more)
+siteNumber <-substr(more,siteNumberStart+attributes(siteNumberStart)$match.length,xShortStart-1)
 additionalData<-substr(more,xShortStart+attributes(xShortStart)$match.length,nchar(more))
 xShortEnd<-regexpr('\",\"subdesc\"',additionalData)
 xShortName<-substr(additionalData,1,xShortEnd-1)
@@ -115,16 +127,14 @@ xUnitEnd<-regexpr(',\"name\":\"',additionalData)
 
 xUnit<-substr(additionalData,xUnitStart+attributes(xUnitStart)$match.length+1,xUnitEnd-2)
 
-xLongEnd<-regexpr('\"\\},\"site\":\"',additionalData)
+xLongEnd<-regexpr('\\\"\\}\\}\\]\\}',additionalData)
 xLongName<-substr(additionalData,xUnitEnd+attributes(xUnitEnd)$match.length,xLongEnd-1)
 
-siteNumberEnd<-regexpr('\",\"varto_details',additionalData)
-siteNumber<-substr(additionalData,xLongEnd+attributes(xLongEnd)$match.length,siteNumberEnd-1)
+
 
 # fix the x variable. 
 names(data)[2]<-paste(gsub(' ','_',xLongName))
 allTogether<-list(data=data,siteNumeber=as.numeric(siteNumber),units=xUnit,siteShortName=shortName,siteName=siteName,qualityCodes=qualityCodes)
-cat('Make sure you check the quality codes. 255 = missing data, but data is represented by 0\'s.\n')
+if(any(qualityCodes==255))cat('Make sure you check the quality codes. 255 = missing data, but data is represented by 0\'s.\n')
 return(allTogether)
 }
-
