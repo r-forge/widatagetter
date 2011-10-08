@@ -41,7 +41,7 @@ dataRequestCode <- gsub('STARTTIME',start_time,dataRequestCode) # the starting t
 dataRequestCode <- gsub('VARIABLENUMBER',variable_number,dataRequestCode) # the database number of the desired variable
 if(!is.null(convert_to)){
 	dataRequestCode <- gsub('CONVERTTO',convert_to,dataRequestCode) # the database number of the desired variable
-else{
+}else{
 	dataRequestCode<-gsub('CONVERTTO',variable_nummber,dataRequestCode)
 }
 dataRequestCode <- gsub('INTERVAL',interval,dataRequestCode) # the units of time interval
