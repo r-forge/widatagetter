@@ -1,5 +1,5 @@
 getData <-
-function(site_number,start_time,end_time,variable_number=100,interval='hour',multiplier=1,data_type='mean',data_source="A",convert_to=NULL){
+function(site_number,start_time,end_time,variable_number=100,interval='hour',multiplier=1,data_type='mean',data_source="A",convert_to=NULL,curlOptions=curlOptions()){
 
 ### Here is the SOAP code that is sent to the server for the request of data.
 dataRequestCode <- '<?xml version="1.0" encoding="UTF-8"?>
@@ -60,7 +60,8 @@ curlPerform(url="http://203.3.195.115/cgi/webservice.server.pl",
                          'Content-Type' = "text/xml; charset=utf-8"),
             postfields=dataRequestCode,
             writefunction = h$update,
-            verbose = FALSE
+            verbose = FALSE,
+            .opts = curlOptions
            )
 # get the results and put them into an object as a character array.
 returnedString<-h$value()
