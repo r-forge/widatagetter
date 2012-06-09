@@ -46,7 +46,7 @@ The multiplier is a integer of the amount of the interval to aggregate the data 
 \itemize{
 \item mean
 \item max
-item min
+\item min
 \item start
 \item end
 \item first 
