@@ -1,5 +1,5 @@
 getData <-
-function(site_number,start_time,end_time,variable_number=100,interval='hour',multiplier=1,data_type='mean',data_source="A",convert_to=NULL,curlOptions=curlOptions()){
+function(site_number,start_time,end_time,variable_number=100,interval='hour',multiplier=1,data_type='mean',data_source="A",convert_to=NULL,curlOptions=NULL){
 
 ### Here is the SOAP code that is sent to the server for the request of data.
 dataRequestCode <- '<?xml version="1.0" encoding="UTF-8"?>
@@ -49,6 +49,13 @@ dataRequestCode <- gsub('MULTI',multiplier,dataRequestCode) # the amount of unit
 dataRequestCode <- gsub('ENDTIME',end_time,dataRequestCode) # the ending time of the record
 dataRequestCode <- gsub('DATATYPE',data_type,dataRequestCode) # aggregating function.
 dataRequestCode <- gsub('DATASOURCE',data_source,dataRequestCode) #The data source withiin the database.
+
+if(is.null(curlOptions)) {
+	curlOptions=curlOptions()
+}
+if(class(curlOptions)!="CURLOptions") {
+	stop("curlOptions must be of class CURLOptions. See ?curlOptions for more details")
+}
 
 
 # create an object to save the returned results from the server

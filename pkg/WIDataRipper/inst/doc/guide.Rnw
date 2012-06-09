@@ -43,11 +43,9 @@ install.packages("WIDataRipper", repos="http://R-Forge.R-project.org")
 \section{The main functons.}
 \widg\ has several functions designed to be used in conjunction to get the desired data off the server. The main work flow assumes the user knows the desired site number. In upcoming releases a site name query will be added. My current work involves a site near Coolac, south west of Canberra. The following examples will provide an example of how to use this package to obtain desired data. \\
 The first stage in obtaining the data, is to first get some meta-data about the site. Using the function \code{getSiteInfo}.
-%writeLines(strwrap(capture.output(my_list)))
-%cat(paste(strwrap(x, width = 70), collapse = "\\\n"), "\n")
 <<>>=
 library(WIDataRipper)
-cat(paste(strwrap(getSiteInfo(410044), width = 70), collapse = "\\\n"))
+cat(paste(strwrap(getSiteInfo(410044), width = 70), collapse = '\\n'))
 #writeLines(strwrap(capture.output(getSiteInfo(410044))))
 @
 With the results of this function, we now have the site location and the elevation and any comments about the site, and the data recording process at the site. The next important piece of meta-data is the available variables at the site and the length of time they have been collected for. However, due to the setup of the server, there are potentially several data sources for each site. Below the available data sources for the site are obtained.

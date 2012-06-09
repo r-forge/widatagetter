@@ -25,9 +25,9 @@ This function is designed to quickly get the latest 7 days of hourly values for 
 \item{data}{ Data frame with date, requested variable and qualityCode.}
 \item{siteNumber}{The site number.}
 \item{units}{The units of the measured variable.}
-\item{siteShortName} {The short name of the site.}
+\item{siteShortName}{The short name of the site.}
 \item{siteName}{The site name.}
-\item{qualityCodes} {A data frame with the quality code value and  comments about that code value. Only revelant codes are provided. }
+\item{qualityCodes}{A data frame with the quality code value and  comments about that code value. Only revelant codes are provided. }
 }
 
 \author{

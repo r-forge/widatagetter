@@ -24,7 +24,7 @@ There appears to be two main data sources available. The data source "A" appears
 \item{siteName}{The long name of the site.}
 \item{siteShortName}{ The short name of the site.}
 \item{siteNumber}{ The site number.}
-\item{variables} {A data.base with the starting and end dates. 
+\item{variables}{A data.base with the starting and end dates. 
 \\ Variable number and variable type is also included.}
 }
 
