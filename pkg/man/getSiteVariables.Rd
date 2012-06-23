@@ -36,6 +36,8 @@ Jason Lessels <jlessels@gmail.com>
 TODO add link to the get data source function.
 }
 \examples{
+\dontrun{
 getSiteVariables(site_number=410044)
 getSiteVariables(site_number=410044,data_source="PROV")
+}
 }

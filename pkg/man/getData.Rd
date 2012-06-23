@@ -8,7 +8,7 @@ Get data from the server.
 This function retrieves the data from one site for one particular variable from the requested start time to the request end time. It uses the interval and the multiplier to determine the frequency of the time series data.
 }
 \usage{
-getData(site_number, start_time, end_time, variable_number = 100, interval = "hour", multiplier = 1, data_type = "mean",data_source="A")
+getData(site_number, start_time, end_time, variable_number = 100, interval = "hour", multiplier = 1, data_type = "mean",data_source="A",convert_to = NULL, curlOptions=NULL)
 }
 
 \arguments{
@@ -22,6 +22,9 @@ getData(site_number, start_time, end_time, variable_number = 100, interval = "ho
 \item{data_source}{
 The source of the data within the database. See details.
 }
+\item{convert_to}{Additional option to convert values on the server. Use \code{\link{getSiteVariables}}}
+\item{curlOptions}{Optional curl options for server request. Must be of class CURLOptions. See \code{\link{curlOptions}}}
+
 
 }
 \details{
@@ -68,6 +71,8 @@ Jason Lessels <jlessels@gmail.com>
 }
 \section{warning}{Quality code: 255 represents missing data, however the corresponding values are 0.}
 \examples{
-getSiteVariables(410044)
-getData(410044,start_time="20110101000000",end_time="20110201000000",interval="day")
+\dontrun{
+  getSiteVariables(410044)
+  getData(410044,start_time="20110101000000",end_time="20110201000000",interval="day")
+}
   }

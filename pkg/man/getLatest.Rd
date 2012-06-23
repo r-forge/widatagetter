@@ -34,6 +34,7 @@ This function is designed to quickly get the latest 7 days of hourly values for 
 Jason Lessels <jlessels@gmail.com>
 }
 \examples{
+\dontrun{
 # Check if the site has latest values avaliable. We are looking for PROV
 getSiteDataSources(410044)
 # Check which variables are avaiable
@@ -45,4 +46,5 @@ plot(latest$data[,1:2],type="l")
 # Or you can just try your luck out.
 latest<-getLatest(410043)
 plot(latest$data[,1:2],type="l")
+}
 }

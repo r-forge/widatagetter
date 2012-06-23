@@ -16,9 +16,6 @@ getSiteInfo(site_number)
 The site number
 }
 }
-\details{
-
-}
 \value{
 \item{siteName}{The name of the site.}
 \item{siteShortName}{The sites shortname.}
@@ -36,5 +33,7 @@ The site number
 Jason Lessels <jlessels@gmail.com>
 }
 \examples{
+\dontrun{
 getSiteInfo(410044)
+}
 }

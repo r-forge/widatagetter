@@ -46,5 +46,8 @@ Jason Lessels <jlessels@gmail.com>
 }
 
 \examples{
-getSitesWithinCircle(-34.9,148,0.5,mustBeActive=T)
+  \dontrun{
+  getSitesWithinCircle(-34.9,148,0.5,mustBeActive=T)
+  }
+
 }

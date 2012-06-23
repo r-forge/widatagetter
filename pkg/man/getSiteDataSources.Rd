@@ -14,9 +14,6 @@ getSiteDataSources(site_number)
 The site number.
 }
 }
-\details{
-
-}
 \value{
 \item{site}{The site number.}
 \item{dataSources}{The available data sources n the server.}
@@ -25,5 +22,7 @@ The site number.
 Jason Lessels <jlessels@gmail.com>
 }
 \examples{
+\dontrun{
 getSiteDataSources(410044)
+}
 }

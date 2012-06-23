@@ -41,5 +41,7 @@ The server request and the data sorting can be quite time consuming. It is curre
 Jason Lessels <jlessels@gmail.com>
 }
 \examples{
+\dontrun{
 getSitesWithinRectangle(c(-34.5,148),c(-35,148.5))
+}
 }
