@@ -8,21 +8,24 @@ Get data from the server.
 This function retrieves the data from one site for one particular variable from the requested start time to the request end time. It uses the interval and the multiplier to determine the frequency of the time series data.
 }
 \usage{
-getData(site_number, start_time, end_time, variable_number = 100, interval = "hour", multiplier = 1, data_type = "mean",data_source="A",convert_to = NULL, curlOptions=NULL)
+getData(site_number, start_time, end_time,
+        variable_number = 100, interval = "hour", multiplier = 1,
+        data_type = "mean", data_source="A",
+        convert_to = NULL, curlOptions=NULL)
 }
 
 \arguments{
   \item{site_number}{The number of the sampling site. TODO add link to site list function.}
   \item{start_time}{The starting time of the time series "yyyymmddHHMMSS".}
   \item{end_time}{The ending time of the time series "yyyymmddHHMMSS".}
-  \item{variable_number}{The number of the desired variable. see \code{\link{getSiteVariables}}.}
+  \item{variable_number}{The number of the desired variable. See \code{\link{getSiteVariables}}.}
   \item{interval}{The time series interval. See details below for more info.}
   \item{multiplier}{The frequency of the interval (must be an integer).}
   \item{data_type}{What to return for the desired interval. See details below for more info.}
 \item{data_source}{
 The source of the data within the database. See details.
 }
-\item{convert_to}{Additional option to convert values on the server. Use \code{\link{getSiteVariables}}}
+\item{convert_to}{Additional option to convert values on the server. Use \code{\link{getSiteVariables}} to get variable numbers. This is generally used to convert stream height to stream discharge.}
 \item{curlOptions}{Optional curl options for server request. Must be of class CURLOptions. See \code{\link{curlOptions}}}
 
 
