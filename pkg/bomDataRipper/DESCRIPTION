@@ -1,0 +1,10 @@
+Package: bomDataRipper
+Type: Package
+Title: BOM data getter
+Version: 1.0
+Date: 2012-06-26
+Author: Jason Lessels
+Maintainer: Jason Lessels <jlessels@gmail.com>
+Depends: RCurl,XML,lubridate
+Description: A small package that retrieves daily and monthly data from the BOM website.
+License: GPL (>=2)
