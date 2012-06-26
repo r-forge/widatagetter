@@ -43,11 +43,9 @@ echo $contents; } ?>
 
 <!-- end of project description -->
 
-<p> No content added. </p>
-
-<p> The <strong>project summary page</strong> you can find <a href="http://<?php echo $domain; ?>/projects/<?php echo $group_name; ?>/"><strong>here</strong></a>. </p>
-
-<p> Just a test</p>
+<p> A couple of helpful hints for Windows users. Both packages require the <strong>XML</strong> and the <strong>RCurl</strong> packages, which are not present on the R cran. The latest of these packages can be found here;
+<a href="http://www.stats.ox.ac.uk/pub/RWin/bin/windows/contrib/2.15/">http://www.stats.ox.ac.uk/pub/RWin/bin/windows/contrib/2.15/</a>. If your version of R is different then just subsitute your version of R in the link.
+</p>
 
 </body>
 </html>
