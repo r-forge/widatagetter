@@ -1,0 +1,2 @@
+useDynLib(hydroEFS)
+exportPattern("^[[:alpha:]]+")

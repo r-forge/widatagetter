@@ -1,0 +1,12 @@
+Package: hydroEFS
+Type: Package
+Title: Hydrological Event Finding and Summarising (hydroEFS).
+Version: 0.04
+Date: 2011-06-06
+Author: Jason Lessels
+Maintainer: Jason Lessels <jason.lessels@sydney.edu.au>
+Description: This package allows users to find events, based on the conditions of the ISCO 3700 storm sampling program. It also provides the ability to obtain summarises of before and during events.
+License: GPL (>=2)
+LazyLoad: yes
+Depends: Rcpp (>= 0.9.4), RcppArmadillo (>= 0.2.21)
+LinkingTo: Rcpp, RcppArmadillo
