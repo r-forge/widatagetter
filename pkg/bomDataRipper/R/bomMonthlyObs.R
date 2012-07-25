@@ -1,5 +1,5 @@
 bomMonthlyObs <-
-function(siteNumber,observation="temp") {
+function(siteNumber,observation="temp",...) {
   
   if(class(observation)!="character") stop("observation must be; temp, rain or solar.")
   observation <- tolower(observation)
@@ -26,7 +26,7 @@ function(siteNumber,observation="temp") {
   }
   # make the orginal request to the server - this is needed to get a unique number from the server.
   # Gets the data from the webpage
-  tables <- readHTMLTable(theurl)
+  tables <- readHTMLTable(theurl,...)
   if(length(tables)==0){stop("Unfortunately there are no data available for the site number you have entered.
 This may be because either the station number is invalid, or the station has
                              not observed the type of data requested.")

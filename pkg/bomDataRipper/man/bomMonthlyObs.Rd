@@ -18,6 +18,10 @@ Either numeric without leading 0, or character with leading 0 of the site number
   \item{observation}{
 The type of observation desired. Options are; temp, solar, rain.
 }
+  \item{...}{
+Additional commands for the RCurl package. 
+}
+
 }
 \details{
 The possible values are maximum monthly temp, solar exposure and rainfall. This function makes a request to the server and then reads the displayed values in two table
