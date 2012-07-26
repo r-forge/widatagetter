@@ -16,7 +16,7 @@ bomMonthlyObs(siteNumber, observation = "temp")
 Either numeric without leading 0, or character with leading 0 of the site number.
 }
   \item{observation}{
-The type of observation desired. Options are; temp, solar, rain.
+The type of observation desired. Options are; observation must be; mean_max_temp, mean_min_temp, highest_temp, lowest_temp, highest_min_temp, rain or solar.
 }
   \item{...}{
 Additional commands for the RCurl package. 

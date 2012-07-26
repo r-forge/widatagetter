@@ -1,8 +1,8 @@
 Package: bomDataRipper
 Type: Package
 Title: BOM data getter
-Version: 1.0
-Date: 2012-06-26
+Version: 1.1
+Date: 2012-07-26
 Author: Jason Lessels
 Maintainer: Jason Lessels <jlessels@gmail.com>
 Depends: RCurl,XML,lubridate

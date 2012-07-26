@@ -3,8 +3,8 @@ bomDailyObs <- function (siteNumber, observation = "temp",...)
   if (class(observation) != "character") 
     stop("observation must be; temp, rain or solar.")
   observation <- tolower(observation)
-  if (is.na(match(observation, c("rain", "temp", "solar")))) 
-    stop("observation must be; temp, rain or solar.")
+  if (is.na(match(observation, c("rain", "min_temp","max_temp", "solar")))) 
+    stop("observation must be; min_temp, max_temp, rain or solar.")
   if (is.numeric(siteNumber)) {
     theurl <- paste("http://www.bom.gov.au/jsp/ncc/cdio/weatherData/av?p_nccObsCode=DATATYPE&p_display_type=dailyDataFile&p_startYear=&p_c=&p_stn_num=0", 
                     siteNumber, sep = "")
@@ -16,9 +16,13 @@ bomDailyObs <- function (siteNumber, observation = "temp",...)
     theurl <- gsub("DATATYPE", "136", theurl)
     dataCode <- 136
   }
-  if (observation == "temp") {
+  if (observation == "max_temp") {
     theurl <- gsub("DATATYPE", "122", theurl)
     dataCode <- 122
+  }
+  if (observation == "min_temp") {
+    theurl <- gsub("DATATYPE", "123", theurl)
+    dataCode <- 123
   }
   if (observation == "solar") {
     theurl <- gsub("DATATYPE", "193", theurl)
@@ -53,9 +57,14 @@ bomDailyObs <- function (siteNumber, observation = "temp",...)
                     "month", "day", "rainfall", "daysRainMeasuredOver", 
                     "quality")
   }
-  if (observation == "temp") {
+  if (observation == "max_temp") {
     names(dat) <- c("productCode", "stationNumber", "year", 
                     "month", "day", "maxTemp", "daysTempMeasuredOver", 
+                    "quality")
+  }
+  if (observation == "min_temp") {
+    names(dat) <- c("productCode", "stationNumber", "year", 
+                    "month", "day", "minTemp", "daysTempMeasuredOver", 
                     "quality")
   }
   if (observation == "solar") {

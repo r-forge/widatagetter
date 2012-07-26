@@ -15,7 +15,7 @@ bomDailyObs(siteNumber, observation = "temp",...)
 Either numeric without leading 0, or character with leading 0 of the site number.
 }
   \item{observation}{
-The type of observation desired. Options are; temp, solar, rain.
+The type of observation desired. Options are; max_temp,min_temp, solar, rain.
 }
   \item{...}{
 Additional commands for the RCurl package. 
