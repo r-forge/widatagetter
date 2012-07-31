@@ -1,0 +1,20 @@
+Package: TSAgg
+Type: Package
+Version: 1.0.1
+Date: 2012-06-23
+Title: Time series Aggregation
+Description: Time series aggregation for incomplete time series data.
+Author: JS Lessels.
+Maintainer: JS Lessels <jason.lessels@sydney.edu.au>
+License: GPL (>= 2)
+Depends:
+    lubridate
+Suggests:
+    zoo
+Collate:
+    'daysAgg.R'
+    'hoursAgg.R'
+    'monthsAgg.R'
+    'timeSeries.R'
+    'yearsAgg.R'
+    'zoo2timeSeries.R'
