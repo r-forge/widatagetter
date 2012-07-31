@@ -3,7 +3,7 @@
  *  
  *
  *  Created by Jason Lessels on 6/06/11.
- *  Copyright 2011 __MyCompanyName__. All rights reserved.
+ *  Copyleft - so enjoy
  *
  */
 
@@ -23,14 +23,16 @@ SEXP eventType1(SEXP streamIn, SEXP stepsIn, SEXP rateIn, SEXP heightIn, SEXP le
 		
 		int steps;
 		int length;
-		double rate;
-		double height;
+	//	double rate;
+	//	double height;
 		steps = as<int>(stepsIn);
-		rate = as<double>(rateIn);
-		height = as<double>(heightIn);
+        //		rate = as<double>(rateIn);
+        //		height = as<double>(heightIn);
 		length = as<int>(lengthOfEventIn);
 		
-		
+		//Rate and height are now vectors to allow for different samplig patterns.
+		NumericVector rate(rateIn);
+		NumericVector height(heightIn);
 		
 		int i = steps;
 		int event = 0;
@@ -44,28 +46,17 @@ SEXP eventType1(SEXP streamIn, SEXP stepsIn, SEXP rateIn, SEXP heightIn, SEXP le
 				eventCount[i]=NA_REAL;
 				i=i++;
 			}
-			//The below loop is being used from version 0.04.
-			if (streamHeight[i]>height) {
+            
+			if (streamHeight[i]>height[i]) {
 				for (int j = (i+1); j <= (i+steps); j++) {
 					if (!naCheck[j]){
-						if ( (streamHeight[j]-streamHeight[i]) > rate) {
+						if ( (streamHeight[j]-streamHeight[i]) > rate[i]) {
 							event = 1;
 						}
 					}
 				}
 			}
-/* --- This has to be changed as it goes backwards, where the SCA method goes forwards.
- //This was taken out of action after 0.03.
-			for(int j = (i-1);j>(i-steps-1);j--){ 
-				if(!naCheck[j]){
-					if((streamHeight[i]-streamHeight[j])>rate&&streamHeight[i]>height){
-						event=1;
-						
-					}
-				}
-			}
-
- */
+            
 			if (event==1) {
 				
 				startOfEvent=i;
@@ -128,13 +119,16 @@ SEXP eventType2(SEXP streamIn, SEXP stepsIn, SEXP rateIn, SEXP heightIn, SEXP le
 		
 		int steps;
 		int length;
-		double rate;
-		double height;
+        //		double rate;
+        //		double height;
 		steps = as<int>(stepsIn);
-		rate = as<double>(rateIn);
-		height = as<double>(heightIn);
+        //		rate = as<double>(rateIn);
+        //		height = as<double>(heightIn);
 		length = as<int>(lengthOfEventIn);
 		
+		//Rate and height are now vectors to allow for different samplig patterns.
+		NumericVector rate(rateIn);
+		NumericVector height(heightIn);
 		
 		
 		int i = steps;
@@ -153,21 +147,12 @@ SEXP eventType2(SEXP streamIn, SEXP stepsIn, SEXP rateIn, SEXP heightIn, SEXP le
 			//The below loop is being used from version 0.04.
 			for (int j = (i+1); j <= (i+steps); j++) {
 				if (!naCheck[j]){
-					if ( (streamHeight[j]-streamHeight[i]) > rate && streamHeight[i] > height ) {
+					if ( (streamHeight[j]-streamHeight[i]) > rate[i] && streamHeight[i] > height[i] ) {
 						event = 1;
 					}
 				}
 			}
-			/*
-			for(int j = (i-1);j>(i-steps-1);j--){ 
-				if(!naCheck[j]){
-					if((streamHeight[i]-streamHeight[j])>rate&&streamHeight[i]>height){
-						event=1;
-						
-					}
-				}
-			}
-			 */
+            
 			
 			if (event==1) {
 				
@@ -175,7 +160,7 @@ SEXP eventType2(SEXP streamIn, SEXP stepsIn, SEXP rateIn, SEXP heightIn, SEXP le
 				endOfEvent=i+length;
 				
 				
-				while (startOfEvent<endOfEvent&&startOfEvent<streamHeight.size()&&streamHeight[startOfEvent]>height){
+				while (startOfEvent<endOfEvent&&startOfEvent<streamHeight.size()&&streamHeight[startOfEvent]>height[i]){
 					
 					if(naCheck[startOfEvent]){
 						eventCount[startOfEvent]=NA_REAL;
@@ -224,12 +209,14 @@ SEXP eventType3(SEXP streamIn, SEXP stepsIn, SEXP rateIn, SEXP lengthOfEventIn )
 		
 		int steps;
 		int length;
-		double rate;
+	//	double rate;
 		
 		steps = as<int>(stepsIn);
-		rate = as<double>(rateIn);
+		//rate = as<double>(rateIn);
 		length = as<int>(lengthOfEventIn);
-		
+		//Rate and height are now vectors to allow for different samplig patterns.
+		NumericVector rate(rateIn);
+	//	NumericVector height(heightIn);
 		
 		
 		int i = steps;
@@ -248,21 +235,12 @@ SEXP eventType3(SEXP streamIn, SEXP stepsIn, SEXP rateIn, SEXP lengthOfEventIn )
 			//The below loop is being used from version 0.04.
 			for (int j = (i+1); j <= (i+steps); j++) {
 				if (!naCheck[j]){
-					if ( (streamHeight[j]-streamHeight[i]) > rate ) {
+					if ( (streamHeight[j]-streamHeight[i]) > rate[i] ) {
 						event = 1;
 					}
 				}
 			}
-			/*
-			for(int j = (i-1);j>(i-steps-1);j--){ 
-				if(!naCheck[j]){
-					if((streamHeight[i]-streamHeight[j])>rate){
-						event=1;
-						
-					}
-				}
-			}
-			*/
+            
 			if (event==1) {
 				
 				startOfEvent=i;
@@ -320,11 +298,13 @@ SEXP eventType4(SEXP streamIn, SEXP heightIn, SEXP lengthOfEventIn ){
 		
 		int steps;
 		int length;
-		double height;
-		height = as<double>(heightIn);
+        //	double height;
+        //	height = as<double>(heightIn);
 		length = as<int>(lengthOfEventIn);
 		
-		
+		//Rate and height are now vectors to allow for different samplig patterns.
+	//	NumericVector rate(rateIn);
+		NumericVector height(heightIn);
 		
 		int i = 0;
 		int startOfEvent = 0;
@@ -339,8 +319,8 @@ SEXP eventType4(SEXP streamIn, SEXP heightIn, SEXP lengthOfEventIn ){
 			}
 			
 			
-
-			if (streamHeight[i] > height) {
+            
+			if (streamHeight[i] > height[i]) {
 				
 				startOfEvent=i;
 				endOfEvent=i+length;
@@ -395,10 +375,13 @@ SEXP eventType5(SEXP streamIn, SEXP heightIn, SEXP lengthOfEventIn ){
 		LogicalVector naCheck = is_na(streamHeight);
 		
 		int length;
-		double height;
-		height = as<double>(heightIn);
+//		double height;
+		//height = as<double>(heightIn);
 		length = as<int>(lengthOfEventIn);
 		
+		//Rate and height are now vectors to allow for different samplig patterns.
+	//	NumericVector rate(rateIn);
+		NumericVector height(heightIn);
 		
 		
 		int i = 0;
@@ -413,13 +396,13 @@ SEXP eventType5(SEXP streamIn, SEXP heightIn, SEXP lengthOfEventIn ){
 				i=i++;
 			}
 			
-			if (streamHeight[i]>height) {
+			if (streamHeight[i]>height[i]) {
 				
 				startOfEvent=i;
 				endOfEvent=i+length;
 				
 				
-				while (startOfEvent<endOfEvent&&startOfEvent<streamHeight.size()&&streamHeight[startOfEvent]>height){
+				while (startOfEvent<endOfEvent&&startOfEvent<streamHeight.size()&&streamHeight[startOfEvent]>height[i]){
 					
 					if(naCheck[startOfEvent]){
 						eventCount[startOfEvent]=NA_REAL;

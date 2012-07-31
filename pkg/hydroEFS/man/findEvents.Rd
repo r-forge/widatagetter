@@ -18,10 +18,10 @@ A numeric vector of either stream discharge or height.
 The amount of steps (iterations) that the rise must occur within.
 }
   \item{rate}{
-The rate of which the stream must rise.
+The rate of which the stream must rise. This can be a single value or a vector of equal to the length of streamProperty.
 }
   \item{height}{
-The height that triggers an event. In case of event types 2,5 the height that it must be above during an event. See details for more information.
+The height that triggers an event. In case of event types 2,5 the height that it must be above during an event. See details for more information. This can be a single value or a vector of equal to the length of streamProperty.
 }
   \item{lengthOfEvent}{
 The maximum amount of steps (iterations) the event contains.
