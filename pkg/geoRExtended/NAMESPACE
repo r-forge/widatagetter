@@ -1,0 +1,2 @@
+useDynLib(geoRExtended)
+exportPattern("^[[:alpha:]]+")
