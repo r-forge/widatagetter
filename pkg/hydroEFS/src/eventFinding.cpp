@@ -15,10 +15,11 @@ SEXP eventType1(SEXP streamIn, SEXP stepsIn, SEXP rateIn, SEXP heightIn, SEXP le
 	//Create a vector of the original inputted values
 	try {
 		NumericVector streamHeight(streamIn);
+        int streamHeight_n = streamHeight.size();
 		//Create a vector ready for input
-		NumericVector eventCount(streamHeight.size());
+		NumericVector eventCount(streamHeight_n);
 		//CReate a vector ready for input
-		NumericVector streamDirection(streamHeight.size());
+		NumericVector streamDirection(streamHeight_n);
 		LogicalVector naCheck = is_na(streamHeight);
 		
 		int steps;
@@ -41,7 +42,7 @@ SEXP eventType1(SEXP streamIn, SEXP stepsIn, SEXP rateIn, SEXP heightIn, SEXP le
 		int eventNumber = 1;
 		int counter=0;
 		
-		while(i<=streamHeight.size()) {
+		while(i<=streamHeight_n) {
 			while(naCheck[i]){//Needs to be a while loop to skip the large na sets.
 				eventCount[i]=NA_REAL;
 				i=i++;
@@ -63,7 +64,7 @@ SEXP eventType1(SEXP streamIn, SEXP stepsIn, SEXP rateIn, SEXP heightIn, SEXP le
 				endOfEvent=i+length;
 				
 				
-				while (startOfEvent<endOfEvent&&startOfEvent<streamHeight.size()){
+				while (startOfEvent<endOfEvent&&startOfEvent<streamHeight_n){
 					
 					if(naCheck[startOfEvent]){
 						eventCount[startOfEvent]=NA_REAL;
@@ -111,10 +112,11 @@ SEXP eventType2(SEXP streamIn, SEXP stepsIn, SEXP rateIn, SEXP heightIn, SEXP le
 	//Create a vector of the original inputted values
 	try {
 		NumericVector streamHeight(streamIn);
+        int streamHeight_n = streamHeight.size();
 		//Create a vector ready for input
-		NumericVector eventCount(streamHeight.size());
+		NumericVector eventCount(streamHeight_n);
 		//CReate a vector ready for input
-		NumericVector streamDirection(streamHeight.size());
+		NumericVector streamDirection(streamHeight_n);
 		LogicalVector naCheck = is_na(streamHeight);
 		
 		int steps;
@@ -138,7 +140,7 @@ SEXP eventType2(SEXP streamIn, SEXP stepsIn, SEXP rateIn, SEXP heightIn, SEXP le
 		int eventNumber = 1;
 		int counter=0;
 		
-		while(i<=streamHeight.size()) {
+		while(i<=streamHeight_n) {
 			while(naCheck[i]){
 				eventCount[i]=NA_REAL;
 				i=i++;
@@ -160,7 +162,7 @@ SEXP eventType2(SEXP streamIn, SEXP stepsIn, SEXP rateIn, SEXP heightIn, SEXP le
 				endOfEvent=i+length;
 				
 				
-				while (startOfEvent<endOfEvent&&startOfEvent<streamHeight.size()&&streamHeight[startOfEvent]>height[i]){
+				while (startOfEvent<endOfEvent&&startOfEvent<streamHeight_n&&streamHeight[startOfEvent]>height[i]){
 					
 					if(naCheck[startOfEvent]){
 						eventCount[startOfEvent]=NA_REAL;
@@ -201,10 +203,11 @@ SEXP eventType3(SEXP streamIn, SEXP stepsIn, SEXP rateIn, SEXP lengthOfEventIn )
 	try {
 		//Create a vector of the original inputted values
 		NumericVector streamHeight(streamIn);
+        int streamHeight_n = streamHeight.size();
 		//Create a vector ready for input
-		NumericVector eventCount(streamHeight.size());
+		NumericVector eventCount(streamHeight_n);
 		//CReate a vector ready for input
-		NumericVector streamDirection(streamHeight.size());
+		NumericVector streamDirection(streamHeight_n);
 		LogicalVector naCheck = is_na(streamHeight);
 		
 		int steps;
@@ -226,7 +229,7 @@ SEXP eventType3(SEXP streamIn, SEXP stepsIn, SEXP rateIn, SEXP lengthOfEventIn )
 		int eventNumber = 1;
 		int counter=0;
 		
-		while(i<=streamHeight.size()) {
+		while(i<=streamHeight_n) {
 			while(naCheck[i]){
 				eventCount[i]=NA_REAL;
 				i=i++;
@@ -247,7 +250,7 @@ SEXP eventType3(SEXP streamIn, SEXP stepsIn, SEXP rateIn, SEXP lengthOfEventIn )
 				endOfEvent=i+length;
 				
 				
-				while (startOfEvent<endOfEvent&&startOfEvent<streamHeight.size()){
+				while (startOfEvent<endOfEvent&&startOfEvent<streamHeight_n){
 					
 					if(naCheck[startOfEvent]){
 						eventCount[startOfEvent]=NA_REAL;
@@ -287,24 +290,26 @@ SEXP eventType3(SEXP streamIn, SEXP stepsIn, SEXP rateIn, SEXP lengthOfEventIn )
 
 
 SEXP eventType4(SEXP streamIn, SEXP heightIn, SEXP lengthOfEventIn ){
+	
 	try {
 		//Create a vector of the original inputted values
 		NumericVector streamHeight(streamIn);
+        int streamHeight_n = streamHeight.size();
 		//Create a vector ready for input
-		NumericVector eventCount(streamHeight.size());
+		NumericVector eventCount(streamHeight_n);
 		//CReate a vector ready for input
-		NumericVector streamDirection(streamHeight.size());
+		NumericVector streamDirection(streamHeight_n);
 		LogicalVector naCheck = is_na(streamHeight);
 		
-		int steps;
 		int length;
-        //	double height;
-        //	height = as<double>(heightIn);
+        //		double height;
+		//height = as<double>(heightIn);
 		length = as<int>(lengthOfEventIn);
 		
 		//Rate and height are now vectors to allow for different samplig patterns.
-	//	NumericVector rate(rateIn);
+        //	NumericVector rate(rateIn);
 		NumericVector height(heightIn);
+		
 		
 		int i = 0;
 		int startOfEvent = 0;
@@ -312,21 +317,19 @@ SEXP eventType4(SEXP streamIn, SEXP heightIn, SEXP lengthOfEventIn ){
 		int eventNumber = 1;
 		int counter=0;
 		
-		while(i<=streamHeight.size()) {
+		while(i<=streamHeight_n) {
 			while(naCheck[i]){
 				eventCount[i]=NA_REAL;
 				i=i++;
 			}
 			
-			
-            
-			if (streamHeight[i] > height[i]) {
+			if (streamHeight[i]>height[i]) {
 				
 				startOfEvent=i;
 				endOfEvent=i+length;
 				
 				
-				while (startOfEvent<endOfEvent&&startOfEvent<streamHeight.size()){
+				while (startOfEvent<endOfEvent&&startOfEvent<streamHeight_n){
 					
 					if(naCheck[startOfEvent]){
 						eventCount[startOfEvent]=NA_REAL;
@@ -368,10 +371,11 @@ SEXP eventType5(SEXP streamIn, SEXP heightIn, SEXP lengthOfEventIn ){
 	try {
 		//Create a vector of the original inputted values
 		NumericVector streamHeight(streamIn);
+        int streamHeight_n = streamHeight.size();
 		//Create a vector ready for input
-		NumericVector eventCount(streamHeight.size());
+		NumericVector eventCount(streamHeight_n);
 		//CReate a vector ready for input
-		NumericVector streamDirection(streamHeight.size());
+		NumericVector streamDirection(streamHeight_n);
 		LogicalVector naCheck = is_na(streamHeight);
 		
 		int length;
@@ -390,7 +394,7 @@ SEXP eventType5(SEXP streamIn, SEXP heightIn, SEXP lengthOfEventIn ){
 		int eventNumber = 1;
 		int counter=0;
 		
-		while(i<=streamHeight.size()) {
+		while(i<=streamHeight_n) {
 			while(naCheck[i]){
 				eventCount[i]=NA_REAL;
 				i=i++;
@@ -402,7 +406,7 @@ SEXP eventType5(SEXP streamIn, SEXP heightIn, SEXP lengthOfEventIn ){
 				endOfEvent=i+length;
 				
 				
-				while (startOfEvent<endOfEvent&&startOfEvent<streamHeight.size()&&streamHeight[startOfEvent]>height[i]){
+				while (startOfEvent<endOfEvent&&startOfEvent<streamHeight_n&&streamHeight[startOfEvent]>height[i]){
 					
 					if(naCheck[startOfEvent]){
 						eventCount[startOfEvent]=NA_REAL;

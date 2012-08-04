@@ -8,14 +8,14 @@ SEXP bamaximum(SEXP invector, SEXP eventmax, SEXP inevents){
 		NumericVector maxPos(eventmax);
 		NumericVector eventLength(inevents);
 		LogicalVector naCheck = is_na(invec);
-		
-		NumericVector outvec(invec.size());
+		int invec_n = invec.size();
+		NumericVector outvec(invec_n);
 		
 		int i = 0;
 		int eventNumber = 0;
 		int startOfEvent = 0;
 		
-		while(i<invec.size()){
+		while(i<invec_n){
 			//  std::cout <<i << std::endl;
 			if(naCheck(i)){
 				outvec(i) = NA_REAL;

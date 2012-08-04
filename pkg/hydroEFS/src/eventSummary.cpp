@@ -76,8 +76,8 @@ SEXP eventSummary(SEXP invector, SEXP invectorTwo){
 									   Rcpp::Named("median") = out.column(3),
 									   Rcpp::Named("std_dev") = out.column(4),
 									   Rcpp::Named("variance") = out.column(5),
-									   Rcpp::Named("Length") = out.column(6),
-									   Rcpp::Named("Steps_till_max") = out.column(7));
+									   Rcpp::Named("length") = out.column(6),
+									   Rcpp::Named("steps_till_max") = out.column(7));
 		
 	} catch(std::exception&__ex__){
 		forward_exception_to_r(__ex__);

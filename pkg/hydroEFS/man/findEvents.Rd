@@ -56,3 +56,19 @@ Jason Lessels
 \note{
 The above methods were created due to demand, more methods could be added, by request.
 }
+
+\examples{
+\dontrun{
+require(WIDataRipper)
+getSiteVariables(410044)
+streamHeight <- getData(410044,start_time="20120101000000",end_time="20120701000000",interval="hour")$data
+
+plot(ecdf(streamHeight[,2]))
+abline(h=0.9)
+abline(v=1.4)
+library(hydroEFS)
+events <- findEvents(streamHeight[,2], NULL,NULL, 1.4, 80,4)
+names(events)
+plot(events$eventDirection)
+}
+}

@@ -1,4 +1,4 @@
-distanceBetweenEvents <- function(events){
-	res <- .Call("distance",invector=events,PACKAGE="hydroEFS")
+distanceBetweenEvents <- function(eventCount){
+	res <- .Call("distance",invector=eventCount,PACKAGE="hydroEFS")
 	return(res)
 }
