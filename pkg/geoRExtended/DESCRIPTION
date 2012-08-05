@@ -7,6 +7,6 @@ Author: Jason Lessels
 Maintainer: Jason Lessels <jlessels@gmail.com>
 Description: This package provides additional optimising methods for the likfit function. It also provides a few additional functions. 
 License: GPL (>=2)
-Depends: Rcpp (>= 0.9.12), RcppArmadillo (>= 0.3.2.0), GenSA, stats, sp, methods, MASS,geoR,gstat,stringr
+Depends: Rcpp (>= 0.9.12), RcppArmadillo (>= 0.3.2.0), GenSA, stats, sp, methods, MASS,geoR,gstat,stringr,aod
 Suggests: scatterplot3d, geoRglm, lattice, graphics, tcltk
 LinkingTo: Rcpp, RcppArmadillo
