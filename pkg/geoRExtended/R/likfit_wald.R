@@ -1,5 +1,5 @@
 likfit_wald <- function(object, probs=NULL, terms=NULL,levels=NULL,factor=NULL){
-	if(inherits(object,"likGRF")){
+	if(!inherits(object,"likGRF")){
 		stop("object must be of class likGRF.")
 	}
 	if(is.null(levels)&&is.null(factor)&&is.null(terms)){

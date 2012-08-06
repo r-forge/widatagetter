@@ -1,11 +1,10 @@
 \name{likfitSANN}
 \alias{likfitSANN}
 %- Also NEED an '\alias' for EACH other topic documented here.
-\title{
-\code{likfit} fitting using simulated annealing from the \code{GenSA} package.
-}
+\title{Likelihood Based Parameter Estimation for Gaussian Random Fields using the \emph{GenSA} package.}
 \description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
+  \emph{Maximum likelihood} (ML) or \emph{restricted maximum likelihood} (REML)
+  parameter estimation for (transformed) Gaussian random fields.
 }
 \usage{
 likfitSANN(geodata, coords = geodata$coords, data = geodata$data, trend = "cte", ini.cov.pars, fix.nugget = FALSE, nugget = 0, fix.kappa = TRUE, kappa = 0.5, fix.lambda = TRUE, lambda = 1, fix.psiA = TRUE, psiA = 0, fix.psiR = TRUE, psiR = 1, cov.model, realisations, lik.method = "ML", components = TRUE, nospatial = TRUE, limits = pars.limits(), print.pars = FALSE, messages, SAcontrol = NULL, ...)
@@ -108,6 +107,8 @@ likfitSANN(geodata, coords = geodata$coords, data = geodata$data, trend = "cte",
   \item{messages}{logical. Indicates whether
     status messages should be printed on the screen (or output device)
     while the function is running.  }
+      \item{\dots}{Defunct. No longer used.}
+    
     \item{SAcontrol}{control arguments used by the \code{\link{GenSA}}}
   \item{object}{an object with output of the function \code{likfit}.  }
   \item{spatial}{logical, determines whether the spatial component of
@@ -269,11 +270,6 @@ likfitSANN(geodata, coords = geodata$coords, data = geodata$data, trend = "cte",
   Paulo Justiniano Ribeiro Jr. \email{paulojus@leg.ufpr.br}, \cr
   Peter J. Diggle \email{p.diggle@lancaster.ac.uk}.
 }
-\note{
-%%  ~~further notes~~
-}
-
-%% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{
 \code{\link{GenSA}}

@@ -5,9 +5,9 @@ likfit_step <- function(geodata,formula,ini.,...,noBackSelection=FALSE, useRcpp=
 		trend.d <- trend.spatial(as.formula(formula),geodata)
 		##run the model.
 		if(useRcpp){
-			model <- likfitRcpp(geodata,ini=ini.,trend=trend.d,...)
+			model <- likfitRcpp(geodata,ini.cov.pars=ini.,trend=trend.d,...)
 		} else {
-			model <- likfit(geodata,ini=ini.,trend=trend.d,...)
+			model <- likfit(geodata,ini.cov.pars=ini.,trend=trend.d,...)
 		}
 		## create a data set for the lm model
 		dataSet <- data.frame(data=BCtransform(geodata$data,lambda=model$lambda),geodata$covar)

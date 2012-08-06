@@ -2,10 +2,10 @@
 \alias{likfit_wald}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-%%  ~~function to do ... ~~
+Wald test for likfit objects.
 }
 \description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
+A quick function to perform wald tests of likfit objects.
 }
 \usage{
 likfit_wald(object, probs = NULL, terms = NULL, levels = NULL, factor = NULL)
@@ -16,7 +16,7 @@ likfit_wald(object, probs = NULL, terms = NULL, levels = NULL, factor = NULL)
 Result from a likfit based function. Must be of class \code{likGRF}.
 }
   \item{probs}{
-Result from \link{\code{likfit_prob}}. Must be specified if factor!=NULL. Default is NULL.
+Result from \code{\link{likfit_prob}}. Must be specified if factor!=NULL. Default is NULL.
 }
   \item{terms}{
 An index indicating variable to be included. Equivalent to Terms in \code{\link{wald.test}}. Default is NULL.
