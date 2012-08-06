@@ -1,7 +1,7 @@
 Package: geoRExtended
 Type: Package
 Title: An extension of the geoR package.
-Version: 1.0.1
+Version: 1.0.2
 Date: 2012-08-03
 Author: Jason Lessels
 Maintainer: Jason Lessels <jlessels@gmail.com>
