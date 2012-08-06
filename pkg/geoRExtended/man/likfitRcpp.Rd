@@ -1,6 +1,5 @@
 \name{likfitRcpp}
 \alias{likfitRcpp}
-%- Also NEED an '\alias' for EACH other topic documented here.
 \title{Likelihood Based Parameter Estimation for Gaussian Random Fields using \emph{Rcpp} package.}
 \description{
   \emph{Maximum likelihood} (ML) or \emph{restricted maximum likelihood} (REML)
