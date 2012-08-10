@@ -83,13 +83,13 @@ SEXP neglog(SEXP par, SEXP fpIn, SEXP ipIn, SEXP tempIn){
             //		if ( ipFTausq ) {
             //			double fpTausq = Rcpp::as<double>(fp["tausq"]);
             //			if( fpTausq > 0 ){
-            Rprintf("\\nphi \\t tausq \\t kappa \\t psiA \\t psiR \\t lambda");
-            Rprintf("\\n %f", phi);
-            Rprintf(" \\t %f",tausq);
-            Rprintf(" \\t %f",kappa);
-            Rprintf(" \\t %f",psiA);
-            Rprintf(" \\t %f",psiR);
-            Rprintf(" \\t %f",lambda);
+            Rprintf("\nphi \t tausq \t kappa \t psiA \t psiR \t lambda");
+            Rprintf("\n %f", phi);
+            Rprintf(" \t %f",tausq);
+            Rprintf(" \t %f",kappa);
+            Rprintf(" \t %f",psiA);
+            Rprintf(" \t %f",psiR);
+            Rprintf(" \t %f",lambda);
             //			}
             //		}
         }
@@ -230,7 +230,7 @@ SEXP neglog(SEXP par, SEXP fpIn, SEXP ipIn, SEXP tempIn){
             sumnegloglik = 1.340781e+154;	
         }
         if(print_pars){
-            Rprintf("log-likelihood = -%f", sumnegloglik);
+            Rprintf("\nlog-likelihood = -%f", sumnegloglik);
         }
         return(wrap(sumnegloglik));
     } catch(std::exception&__ex__){
